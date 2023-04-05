@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from "react";
+import RouteHandler from "./components/RouterHandler";
+import cookie from "cookie";
+import HomePage from "./components/HomePage";
+
+export const myContext = createContext();
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [cookies, setCookies] = useState(cookie.parse(document.cookie));
+  return cookies.auth !== undefined ? (
+    <myContext.Provider value={{ cookies, setCookies }}>
+      <RouteHandler />
+    </myContext.Provider>
+  ) : (
+    <myContext.Provider value={{ cookies, setCookies }}>
+      <HomePage/>
+    </myContext.Provider>
   );
 }
 

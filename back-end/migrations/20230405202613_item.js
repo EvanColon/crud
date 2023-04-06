@@ -5,11 +5,11 @@
 exports.up = function(knex) {
   return knex.schema.createTable('item', table => {
     table.increments('id').primary();
-    table.integer('UserID').unsigned().notNullable();
-    table.string('Item_Name');
-    table.string('Description');
-    table.integer('Quantity');
-    table.foreign('UserID').references('id').inTable('user')
+    table.integer('userId').unsigned().notNullable();
+    table.string('itemName');
+    table.string('description');
+    table.integer('quantity');
+    table.foreign('userId').references('id').inTable('users')
     .onDelete('CASCADE');
   });
 };

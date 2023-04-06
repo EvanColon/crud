@@ -27,8 +27,8 @@ const HomePage = () => {
             <Col>
              <div>
   
-                {items.map((item) => (
-                  <span>{item.Item_Name} </span>
+                {items.map((item, i) => (
+                  <div key={i}>{item.Item_Name}</div>
                 ))} 
 
 

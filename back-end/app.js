@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const controllers = require("./db/controllers");
-//const auth = require("./authentication");
+const login = require("./login");
 //const admin = require("./adminFunctions")
 const cookieParser = require("cookie-parser");
 
@@ -23,6 +23,10 @@ app.get('/', (req, res) => {
     .then(data => {
       res.status(200).send(data);
     })
+});
+
+app.get("/login", (req, res) => {
+  auth.loginUser(req, res);
 });
 
 module.exports = app;

@@ -3,9 +3,9 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  return knex.schema.createTable('user', table => {
+  return knex.schema.createTable('users', table => {
     table.increments('id').primary();
-    table.string('First_Name').notNullable();
+    table.string('First_Name');
     table.string('Last_Name');
     table.string('Username');
     table.string('Password');
@@ -17,5 +17,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.raw('DROP TABLE IF EXISTS user CASCADE;');
+  return knex.schema.raw('DROP TABLE IF EXISTS users CASCADE;');
 };

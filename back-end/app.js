@@ -26,7 +26,16 @@ app.get('/', (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  auth.loginUser(req, res);
+  login.loginUser(req, res);
 });
+
+app.get("/logout", (req, res) => {
+  login.logoutUser(req, res);
+});
+
+app.post("/user/register", (req, res) => {
+  login.registerUser(req, res);
+});
+
 
 module.exports = app;

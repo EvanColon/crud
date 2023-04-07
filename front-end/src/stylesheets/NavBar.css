@@ -1,0 +1,16 @@
+.navbar-main{
+  height: 7vh;
+}
+.nav-button-group{
+  width: 32%
+}
+.nav-buttons{
+  margin-right: 7px;
+}
+.brand-logo{
+  margin-right: 5px;
+}
+.brand-logo,
+.brand-text:hover{
+  cursor: pointer;
+}

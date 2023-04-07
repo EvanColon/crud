@@ -13,7 +13,7 @@ const getUser = (username) => {
       return data[0];
     });
 };
-const addUser = (req, hash) => {
+const addUser = (req, password) => {
   knex("users")
     .insert({
       firstName: req.get("firstName"),

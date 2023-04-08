@@ -4,6 +4,7 @@ import { Row, Col, Container, Button, Navbar, Nav, NavDropdown } from "react-boo
 import { useNavigate } from "react-router-dom";
 import Cookie from "cookie";
 import { myContext } from "../App";
+import NavBar from "./NavBar";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -40,27 +41,16 @@ const HomePage = () => {
     return (
 
         <>
-          <Navbar bg="dark" variant="dark" className="navbar-main">
+          <Navbar bg="dark" variant="dark" className="navbar">
             <Container className="align-items-right">
               <Nav className="align-items-right">
-                <img
-                  alt=""
-                  width="30"
-                  height="30"
-                  className="d-inline-block brand-logo"
-                />
                 <Navbar.Brand>
-                  <h3 className='text-primary brand-text' onClick={() => navigate('/login')}><strong>CRUD Inventory</strong></h3>
+                  <h3 className='text-primary brand-text'><strong>CRUD Inventory</strong></h3>
                 </Navbar.Brand>
-                <NavDropdown title="Moving Info" id="collasible-nav-dropdown" menuVariant="dark">
-                  <NavDropdown.Item onClick={() => navigate('/PPS')}></NavDropdown.Item>
-                  <NavDropdown.Item onClick={() => navigate('/login')}>Manager Login</NavDropdown.Item>
-                </NavDropdown>
               </Nav>
               <Nav className="nav-button-group justify-content-center">
-                <Button variant="outline-primary" className="nav-buttons" onClick={() => navigate('/favorites')}>Favorites</Button>{' '}
                 {cookies.id !== undefined && cookies.id > '0' ? <><Button variant="outline-primary" className="nav-buttons" onClick={() => navigate('/admin')}>Admin</Button>{' '}</> : null}
-                <Button variant="outline-primary" className="nav-buttons" onClick={() => handleLogout()}>Logout</Button>{' '}
+                <Button variant="outline-primary" className="nav-buttons" onClick={() => navigate('/')}>Login</Button>{' '}
               </Nav>
     
             </Container>

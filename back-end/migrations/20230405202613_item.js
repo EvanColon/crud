@@ -9,8 +9,6 @@ exports.up = function(knex) {
     table.string('itemName');
     table.string('description');
     table.integer('quantity');
-    table.foreign('userId').references('id').inTable('users')
-    .onDelete('CASCADE');
   });
 };
 

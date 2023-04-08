@@ -5,17 +5,21 @@ import HomePage from "./components/HomePage";
 import LoginPage from "./components/LoginPage";
 import NavBar from "./components/NavBar";
 import AdminPage from "./components/AdminPage";
+
+
 export const myContext = createContext();
-
-
 
 function App() {
   const [cookies, setCookies] = useState(cookie.parse(document.cookie));
-  return (
+  
+  return cookies.auth === undefined ? (
     <myContext.Provider value={{ cookies, setCookies }}>
-      {console.log(cookies)}
-      <LoginPage />
+      <RouteHandler />
     </myContext.Provider>
-  )
+  ) : (
+    <myContext.Provider value={{ cookies, setCookies }}>
+      <RouteHandler />
+    </myContext.Provider>
+  );
 }
 export default App;

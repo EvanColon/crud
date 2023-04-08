@@ -37,5 +37,15 @@ app.post("/user/register", (req, res) => {
   login.registerUser(req, res);
 });
 
+app.post("/create/item", (req) => {
+   controllers.addNewItem(req)
+  });
 
+  app.delete("/delete/item", (req) => {
+   controllers.deleteItem(req);
+  });
+
+  app.patch("/update/item", (req, res) => {
+    controllers.updateName(req, res)
+  });
 module.exports = app;

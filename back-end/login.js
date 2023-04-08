@@ -27,7 +27,7 @@ module.exports = {
       if (req.cookies.auth === undefined) {
         res.status(200).json({error: true, message: "You are not logged in."});
       } else {
-        res.clearCookie('auth');
+        res.clearCookie('auth', 'userId');
         res.status(200).json({error: false, message: "You are logged out."});
       }
     },
@@ -40,7 +40,7 @@ module.exports = {
           res.status(200).json({error: true, message: "User already exists. Please try again."});
         } else {
           const password = req.get('password');
-          auth.addUser(req, password);
+          auth.addUser(req);
           res.status(200).json({error: false, message: "User created"});
         }
       }

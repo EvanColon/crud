@@ -1,0 +1,9 @@
+.ml-5.text-black.row {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: darkgrey;
+}
+
+body {
+  background-color: rgb(185, 207, 214);
+}

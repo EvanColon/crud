@@ -1,10 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import Cookie from 'cookie';
 import { myContext } from '../App';
 import { useNavigate } from 'react-router';
 import '../stylesheets/LoginPage.css';
 import { LoginAlert } from './LoginAlert';
-import RouteHandler from './RouterHandler';
 import { Button } from 'react-bootstrap';
 import HomePage from './HomePage';
 
@@ -14,7 +13,6 @@ const LoginPage = () => {
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
   const { setCookies } = useContext(myContext);
   const [authMode, setAuthMode] = useState("signin")
   const [showAlert, setShowAlert] = useState(false);
@@ -85,36 +83,6 @@ const LoginPage = () => {
       }
       )
   };
-  // const handleUpdatePassword = () => {
-  //   let headers = new Headers();
-  //   headers.append('username', username);
-  //   headers.append('password', password);
-  //   headers.append('newPassword', newPassword);
-  //   fetch('http://localhost:3001/user/update', {
-  //     method: 'PUT',
-  //     credentials: 'include',
-  //     headers: headers,
-  //   })
-  //     .then((response) => {
-
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       if(!data.error){
-  //         setAlertObj(data);
-  //         setShowAlert(true);
-  //         setAuthMode("signin");
-  //       }else{
-  //         setAlertObj(data);
-  //         setShowAlert(true);
-  //       }
-  //       return;
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     }
-  //     )
-  // };
 
   const changeAuthMode = (value) => {
     setShowAlert(false);
@@ -163,7 +131,7 @@ const LoginPage = () => {
             </div>
             <p className="text-center text-light mt-2">
               Sign in as Guest?{" "}
-              <Button variant="outline-primary" className="nav-buttons" onClick={() => changeAuthMode("guest")}>Continue as Guest</Button>{' '}
+              <Button variant="outline-primary" className="nav-buttons" onClick={() => { changeAuthMode("guest"); navigate('/home'); }}>Continue as Guest</Button>{' '}
             </p>
           </div>
         </form>
@@ -225,7 +193,7 @@ const LoginPage = () => {
             </div>
             <p className="text-center text-light mt-2">
               Sign in as Guest? {" "}
-              <Button variant="outline-primary" className="nav-buttons" onClick={() => navigate('/home')}>Continue as Guest</Button>{' '}
+              <Button variant="outline-primary" className="nav-buttons" onClick={() => { changeAuthMode("guest"); navigate('/home'); }}>Continue as Guest</Button>{' '}
             </p>
           </div>
         </form>
@@ -237,5 +205,6 @@ const LoginPage = () => {
     )
 }
 }
+
 export default LoginPage
 

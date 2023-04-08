@@ -35,15 +35,15 @@ const deleteUser = async (req) => {
       console.log(data);
     });
 };
-const updatePassword = (username, password) => {
-  knex("users")
-    .where("username", username)
+const updateName = (req) => {
+  knex("item")
+    .where("id", itemId)
     .update({
-      password: "password",
+      itemName: "itemName",
     })
     .then((data) => {
       console.log(data);
     });
 };
 
-module.exports = { getUser, addUser, deleteUser, updatePassword };
+module.exports = { getUser, addUser, deleteUser, updateName};

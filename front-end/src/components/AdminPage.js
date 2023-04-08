@@ -5,15 +5,7 @@ import "../../src/stylesheets/AdminPage.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import {
-  Row,
-  Col,
-  Container,
-  Button,
-  Navbar,
-  Nav,
-  NavDropdown,
-} from "react-bootstrap";
+import {Row, Col, Container, Button, Navbar, Nav, NavDropdown} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import EasyEdit, { Types } from "react-easy-edit";
@@ -273,19 +265,18 @@ const AdminPage = () => {
                   <div
                     className="itemContainer"
                     key={item.id}
-                    style={{ width: "80.5%" }}
+                    style={{ width: "300.5%", height: "50.5%" }}
                   >
-                    {console.log(item)}
-                    -----------------------
+                  
+                    --------------
+
                     <EasyEdit
                       type={Types.TEXT}
                       onSave={saveId}
                       onCancel={cancel}
                       saveButtonLabel="Save Me"
                       cancelButtonLabel="Cancel Me"
-                      placeholder={
-                        `${item.userId}` === cookies.userId ? item.id : ""
-                      }
+                      placeholder={item.id}
                     />
                     <EasyEdit
                       type={Types.TEXT}
@@ -293,9 +284,7 @@ const AdminPage = () => {
                       onCancel={cancel}
                       saveButtonLabel="Save Me"
                       cancelButtonLabel="Cancel Me"
-                      placeholder={
-                        `${item.userId}` === cookies.userId ? item.itemName : ""
-                      }
+                      placeholder={item.itemName}
                     />
                     <EasyEdit
                       type={Types.TEXT}
@@ -303,11 +292,7 @@ const AdminPage = () => {
                       onCancel={cancel}
                       saveButtonLabel="Save Me"
                       cancelButtonLabel="Cancel Me"
-                      placeholder={
-                        `${item.userId}` === cookies.userId
-                          ? item.description
-                          : ""
-                      }
+                      placeholder={item.description}
                     />
                     <EasyEdit
                       type={Types.TEXT}
@@ -315,9 +300,7 @@ const AdminPage = () => {
                       onCancel={cancel}
                       saveButtonLabel="Save Me"
                       cancelButtonLabel="Cancel Me"
-                      placeholder={
-                        `${item.userId}` === cookies.userId ? item.quantity : ""
-                      }
+                      placeholder={item.quantity}
                     />
                   </div>
                 ))}
@@ -399,15 +382,15 @@ const AdminPage = () => {
                       key={item.id}
                       style={{ width: "300.5%", height: "300.5%" }}
                     >
-                      -----------------------
+                      --------------
                       <EasyEdit
                         type={Types.TEXT}
                         onSave={saveId}
                         onCancel={cancel}
                         saveButtonLabel="Save Me"
                         cancelButtonLabel="Cancel Me"
-                        placeholder="id"{...
-                          `${item.userId}` === cookies.userId ? item.id : ""
+                        placeholder={
+                        `${item.userId}` === cookies.userId ? item.id : ""
                         }
                       />
                       <EasyEdit
@@ -417,8 +400,8 @@ const AdminPage = () => {
                         saveButtonLabel="Save Me"
                         cancelButtonLabel="Cancel Me"
                         onChange={(event) =>
-                          (modificationObj.current["itemName"] =
-                            event.target.value)
+                        (modificationObj.current["itemName"] =
+                          event.target.value)
                         }
                         placeholder={
                           `${item.userId}` === cookies.userId
@@ -433,8 +416,8 @@ const AdminPage = () => {
                         saveButtonLabel="Save Me"
                         cancelButtonLabel="Cancel Me"
                         onChange={(event) =>
-                          (modificationObj.current["description"] =
-                            event.target.value)
+                        (modificationObj.current["description"] =
+                          event.target.value)
                         }
                         placeholder={
                           `${item.userId}` === cookies.userId
@@ -449,8 +432,8 @@ const AdminPage = () => {
                         saveButtonLabel="Save Me"
                         cancelButtonLabel="Cancel Me"
                         onChange={(event) =>
-                          (modificationObj.current["quantity"] =
-                            event.target.value)
+                        (modificationObj.current["quantity"] =
+                          event.target.value)
                         }
                         placeholder={
                           `${item.userId}` === cookies.userId
@@ -474,94 +457,83 @@ const AdminPage = () => {
   } else if (authMode === "createInventory") {
     return (
       <div className="Auth-form-container-admin">
-        <form className="Auth-form bg-dark" onSubmit={handleSubmit}>
-          <div className="Auth-form-content">
-            <h3 className="Auth-form-title text-primary">Manage Items</h3>
-            <Row className="drop bg-secondary">
-                <Col className="d-flex p-2">
-                  <DropdownButton
-                    className="button-64"
-                    as={ButtonGroup}
-                    id="dropdown-select-button"
-                    title="Select Action"
-                    variant="outline-primary"
-                  >
-              <Dropdown.Item as="button" onClick={() => changeAuthMode("viewInventory")}>
-                View All Inventory
-              </Dropdown.Item>
-              <Dropdown.Item
-                as="button"
-                onClick={() => changeAuthMode("viewInventory")}
-              >
-                View All Inventory
-              </Dropdown.Item>
-              <Dropdown.Item
-                as="button"
-                onClick={() => changeAuthMode("manageInventory")}
-              >
-                Manage My Items
-              </Dropdown.Item>
-              <Dropdown.Item
-                as="button"
-                onClick={() => changeAuthMode("deleteInventory")}
-              >
-                Delete Inventory
-              </Dropdown.Item>
-              <Dropdown.Item
-                as="button"
-                onClick={() => changeAuthMode("editInventory")}
-              >
-                Edit Inventory
-              </Dropdown.Item>
-              <Dropdown.Item
-                as="button"
-                onClick={() => changeAuthMode("createInventory")}
-              >
-                Create Inventory
-              </Dropdown.Item>
-            </DropdownButton>
-            </Col>
-            </Row>
-          </div>
-          <Nav className="nav-button-group justify-content-center">
-                  <Button
-                    variant="outline-primary"
-                    className="nav-buttons"
-                    onClick={() => handleLogout()}
-                  >
-                    Logout
-                  </Button>{" "}
-                </Nav>
-
+      <form className="Auth-form bg-dark" onSubmit={handleSubmit}>
+        <div className="Auth-form-content">
+          <h3 className="Auth-form-title text-primary">Manage Items</h3>
+          <Button
+            variant="outline-primary"
+            className="nav-buttons"
+            onClick={() => handleLogout()}
+          >
+            Logout
+          </Button>{" "}
+          <DropdownButton
+            id="dropdown-select-button"
+            title="Select Action"
+            variant="outline-primary"
+          >
+            <Dropdown.Item
+              as="button"
+              onClick={() => changeAuthMode("viewInventory")}
+            >
+              View All Inventory
+            </Dropdown.Item>
+            <Dropdown.Item
+              as="button"
+              onClick={() => changeAuthMode("manageInventory")}
+            >
+              Manage My Items
+            </Dropdown.Item>
+            <Dropdown.Item
+              as="button"
+              onClick={() => changeAuthMode("deleteInventory")}
+            >
+              Delete Inventory
+            </Dropdown.Item>
+            <Dropdown.Item
+              as="button"
+              onClick={() => changeAuthMode("editInventory")}
+            >
+              Edit Inventory
+            </Dropdown.Item>
+            <Dropdown.Item
+              as="button"
+              onClick={() => changeAuthMode("createInventory")}
+            >
+              Create Inventory
+            </Dropdown.Item>
+          </DropdownButton>
+          <>
           <Row className="ml-5 text-black text-center">
-          <div className="form-group mt-3">
-            <label className="input-label">New Item Name</label>
-            <input
-              type="text"
-              className="form-control mt-1"
-              placeholder="Item Name"
-              onChange={(event) => setItemName(event.target.value)}
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label className="input-label">New Description</label>
-            <input
-              type="text"
-              className="form-control mt-1"
-              placeholder="Description"
-              onChange={(event) => setDescription(event.target.value)}
-            />
-          </div>
-          <div className="form-group mt-3">
-            <label className="input-label">New Quantity</label>
-            <input
-              type="text"
-              className="form-control mt-1"
-              placeholder="Quantity"
-              onChange={(event) => setQuantity(event.target.value)}
-            />
-          </div>
+            <div className="form-group mt-3">
+              <label className="input-label">New Item Name</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="Item Name"
+                onChange={(event) => setItemName(event.target.value)}
+              />
+            </div>
+            <div className="form-group mt-3">
+              <label className="input-label">New Description</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="Description"
+                onChange={(event) => setDescription(event.target.value)}
+              />
+            </div>
+            <div className="form-group mt-3">
+              <label className="input-label">New Quantity</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="Quantity"
+                onChange={(event) => setQuantity(event.target.value)}
+              />
+            </div>
           </Row>
+          </>
           {showAlert ? (
             <DismissableAlert alert={alertObj} setShowAlert={setShowAlert} />
           ) : null}
@@ -576,6 +548,7 @@ const AdminPage = () => {
             >
               Create Item
             </button>
+            </div>
           </div>
         </form>
       </div>
@@ -591,19 +564,19 @@ const AdminPage = () => {
               title="Select Action"
               variant="outline-primary"
             >
-              <Dropdown.Item onClick={() => changeAuthMode("viewInventory")}>
+              <Dropdown.Item as="button" onClick={() => changeAuthMode("viewInventory")}>
                 View All Inventory
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => changeAuthMode("manageInventory")}>
+              <Dropdown.Item as="button" onClick={() => changeAuthMode("manageInventory")}>
                 Manage My Items
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => changeAuthMode("deleteInventory")}>
+              <Dropdown.Item as="button" onClick={() => changeAuthMode("deleteInventory")}>
                 Delete Inventory
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => changeAuthMode("editInventory")}>
+              <Dropdown.Item as="button" onClick={() => changeAuthMode("editInventory")}>
                 Edit Inventory
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => changeAuthMode("createInventory")}>
+              <Dropdown.Item as="button" onClick={() => changeAuthMode("createInventory")}>
                 Create Inventory
               </Dropdown.Item>
             </DropdownButton>
@@ -656,7 +629,7 @@ const AdminPage = () => {
               <button
                 type="text"
                 className="btn btn-outline-primary"
-                onClick={() => ""}
+                onClick={() => editName}
               >
                 Edit Items
               </button>
@@ -694,74 +667,74 @@ const AdminPage = () => {
             </DropdownButton>
 
             <Row className="ml-5 text-black text-center">
-                  {items.map((item, i) => (
-                    <div
-                      className="itemContainer"
-                      key={item.id}
-                      style={{ width: "80.5%" }}
-                    >
-                      -----------------------
-                      <EasyEdit
-                        type={Types.TEXT}
-                        onSave={saveId}
-                        onCancel={cancel}
-                        saveButtonLabel="Save Me"
-                        cancelButtonLabel="Cancel Me"
-                        placeholder="id:"{...
-                          `${item.userId}` === cookies.userId ? item.id : ""
-                        }
-                      />
-                      <EasyEdit
-                        type={Types.TEXT}
-                        onSave={editName}
-                        onCancel={cancel}
-                        saveButtonLabel="Save Me"
-                        cancelButtonLabel="Cancel Me"
-                        onChange={(event) =>
-                          (modificationObj.current["itemName"] =
-                            event.target.value)
-                        }
-                        placeholder={
-                          `${item.userId}` === cookies.userId
-                            ? item.itemName
-                            : ""
-                        }
-                      />
-                      <EasyEdit
-                        type={Types.TEXT}
-                        onSave={saveDescription}
-                        onCancel={cancel}
-                        saveButtonLabel="Save Me"
-                        cancelButtonLabel="Cancel Me"
-                        onChange={(event) =>
-                          (modificationObj.current["description"] =
-                            event.target.value)
-                        }
-                        placeholder={
-                          `${item.userId}` === cookies.userId
-                            ? item.description
-                            : ""
-                        }
-                      />
-                      <EasyEdit
-                        type={Types.TEXT}
-                        onSave={saveQuantity}
-                        onCancel={cancel}
-                        saveButtonLabel="Save Me"
-                        cancelButtonLabel="Cancel Me"
-                        onChange={(event) =>
-                          (modificationObj.current["quantity"] =
-                            event.target.value)
-                        }
-                        placeholder={
-                          `${item.userId}` === cookies.userId
-                            ? item.quantity
-                            : ""
-                        }
-                      />
-                    </div>
-                  ))}
-                </Row>
+              {items.map((item, i) => (
+                <div
+                  className="itemContainer"
+                  key={item.id}
+                  style={{ width: "80.5%" }}
+                >
+                  -------------
+                  <EasyEdit
+                    type={Types.TEXT}
+                    onSave={saveId}
+                    onCancel={cancel}
+                    saveButtonLabel="Save Me"
+                    cancelButtonLabel="Cancel Me"
+                    placeholder={
+                    `id: ${item.userId}` === cookies.userId ? `id: ${item.id}` : ""
+                    }
+                  />
+                  <EasyEdit
+                    type={Types.TEXT}
+                    onSave={editName}
+                    onCancel={cancel}
+                    saveButtonLabel="Save Me"
+                    cancelButtonLabel="Cancel Me"
+                    onChange={(event) =>
+                    (modificationObj.current["itemName"] =
+                      event.target.value)
+                    }
+                    placeholder={
+                      `${item.userId}` === cookies.userId
+                        ? item.itemName
+                        : ""
+                    }
+                  />
+                  <EasyEdit
+                    type={Types.TEXT}
+                    onSave={saveDescription}
+                    onCancel={cancel}
+                    saveButtonLabel="Save Me"
+                    cancelButtonLabel="Cancel Me"
+                    onChange={(event) =>
+                    (modificationObj.current["description"] =
+                      event.target.value)
+                    }
+                    placeholder={
+                      `${item.userId}` === cookies.userId
+                        ? item.description
+                        : ""
+                    }
+                  />
+                  <EasyEdit
+                    type={Types.TEXT}
+                    onSave={saveQuantity}
+                    onCancel={cancel}
+                    saveButtonLabel="Save Me"
+                    cancelButtonLabel="Cancel Me"
+                    onChange={(event) =>
+                    (modificationObj.current["quantity"] =
+                      event.target.value)
+                    }
+                    placeholder={
+                      `${item.userId}` === cookies.userId
+                        ? item.quantity
+                        : ""
+                    }
+                  />
+                </div>
+              ))}
+            </Row>
 
             <div className="form-group mt-3">
               <label className="input-label">Id of Item to Delete</label>

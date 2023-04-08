@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const cors = require("cors");
 const controllers = require("./db/controllers");
 const login = require("./login");
-//const admin = require("./adminFunctions")
 const cookieParser = require("cookie-parser");
 
 const app = express();

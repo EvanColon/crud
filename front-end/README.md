@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# SDI Z-Prefix CRUD Application
+## Evan Colon
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+***Semper Supra***
 
-## Available Scripts
 
-In the project directory, you can run:
+### The Setup
 
-### `npm start`
+**1. Fork & Clone** 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Fork this repository in GitHub and clone it locally onto your machine.
+	* https://github.com/EvanColon/crud
+	* Once cloned:
+			* open the repo with VSCode
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**2. Set up your Database**
 
-### `npm test`
+* Open Docker Desktop
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Next, open your preferred terminal **NOTE: be sure the terminal you use to open your back-end is the same terminal you use for your front-end application**
 
-### `npm run build`
+* Run the following command to pull down a Dockerized Postgres image from the cloud `docker pull postgres`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Next, you will need to create the directories that will house your database data by running this command `mkdir -p $HOME/docker/volumes/postgres`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Run the following command to start up a Docker Postgres container instance of the image that was pulled `docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* This should populate a PSQL Container ID. Then run the following command `docker exec -it <first 3 characters of the PSQL-Container-ID> bash`
 
-### `npm run eject`
+* Run the following command `psql -U postgres`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* When you type in `\l` it will populate a list of databases. You will need to add a database to that list of databases for this application. Run the following command `CREATE DATABASE basehousing;` **NOTE: Don't forget your semicolon! If you do, immediately after you hit enter, add the semi-colon and hit enter again**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Go to your VSCode and open your terminal
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**3. Back-end**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**NOTE: be sure to change directory to the back-end**
 
-## Learn More
+* Type `npm install`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* You should see a `knexfile.js` and a `.env` file. If your `.env` file is not there, copy paste the following *CONNECTION_STRING='postgres://USER:PASSWORD@localhost/basehousing'* into a new file named '.env' in the back-end directory. Be sure to replace the USER:PASSWORD with your postgres Username and Password, i.e.(*CONNECTION_STRING='postgres://postgres:docker@localhost/basehousing'*)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Next, you will need to run the following command `npx knex migrate:latest`
 
-### Code Splitting
+* Once that is complete, run the following command `npx knex seed:run`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Run `nodemon index.js` to start running your back-end 
 
-### Analyzing the Bundle Size
+**4. Front-end**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**NOTE: be sure to change directory to the front-end**
 
-### Making a Progressive Web App
+* Type `npm install` in the front-end directory through the terminal to gain all the dependencies required for this application 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* run `npm start` to start your server 
 
-### Advanced Configuration
+## How to use the CRUD App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**User Functionality**
 
-### Deployment
+> As a user, you will be able to sign up by clicking 'sign up' and create a username and password to login. The session cookie is good for about 10 minutes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+> As a guest user on the homepage, you will be able to see the seeded / created items as well as opt to login to an account for Inventory Manager access.
 
-### `npm run build` fails to minify
+> After logging in with the credentials you create or one of the seeded accounts you will be transfered to the Inventory Manager.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> The Inventory Manager portal gives the user the ability to create items that will inherit the user's account id number.
+
+> Inventory Manager users can only delete items created by their user account.
+
+> Under the "View All Inventory" tab the Inventory Manager will be able to see items created by all users.
+
+> Under the "Manage My Items" tab the Inventory Manager can see the items associated with their account.
+
+> Under the "Delete Items" tab the Inventory Manager can delete items by Id number as long as they're associated with their account. Id numbers are listed on the top row under the "Manage My Items" tab.
+
+> Under the "Create Items" tab the Inventory Manager can post a new item to the database and see it rendered under the "Manage My Items" tab. You may need to refresh the page to see it.
+
+> The "Edit Items Tab is non-functional, but it's purpose was to submit put requests to edit rows of data.
+
+> All of the text in each of the items can be clicked to edit the value, however the changes are not persistent as I was unable to complete the PUT / PATCH request required to make those changes to the database. 
+
+
+
+**Admin Functionality**
+
+> As an admin, you will be able to update and delete housing locations
+
+> As an admin, you will be able to edit military approved moving companies
+
+## Contributions
+
+* Evan Colon - https://github.com/EvanColon
+
+
+
+

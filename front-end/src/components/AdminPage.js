@@ -5,9 +5,8 @@ import "../../src/stylesheets/AdminPage.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import {Row, Col, Container, Button, Navbar, Nav, NavDropdown} from "react-bootstrap";
+import {Row, Col, Button, Navbar, Nav} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import ReactDOM from "react-dom";
 import EasyEdit, { Types } from "react-easy-edit";
 import Cookie from "cookie";
 

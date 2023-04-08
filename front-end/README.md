@@ -83,12 +83,6 @@
 
 
 
-**Admin Functionality**
-
-> As an admin, you will be able to update and delete housing locations
-
-> As an admin, you will be able to edit military approved moving companies
-
 ## Contributions
 
 * Evan Colon - https://github.com/EvanColon

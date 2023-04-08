@@ -39,7 +39,7 @@
 
 * Type `npm install`
 
-* You should see a `knexfile.js` and a `.env` file. If your `.env` file is not there, copy paste the following *CONNECTION_STRING='postgres://USER:PASSWORD@localhost/basehousing'* into a new file named '.env' in the back-end directory. Be sure to replace the USER:PASSWORD with your postgres Username and Password, i.e.(*CONNECTION_STRING='postgres://postgres:docker@localhost/basehousing'*)
+* You should see a `knexfile.js` and a `.env` file. If your `.env` file is not there, copy paste the following *CONNECTION_STRING='postgres://USER:PASSWORD@localhost/my_db'* into a new file named '.env' in the back-end directory. Be sure to replace the USER:PASSWORD with your postgres Username and Password, i.e.(*CONNECTION_STRING='postgres://postgres:docker@localhost/my_db'*)
 
 * Next, you will need to run the following command `npx knex migrate:latest`
 
